@@ -60,7 +60,7 @@ Built with pure HTML5, CSS3, JavaScript, Canvas, and Web Audio API — zero depe
   - Realistic flickering flames, authentic brass temple bell (*ಘಂಟೆ*) sound, and grand celebratory fireworks when all 5 are lit!
 - **💌 Personalized Greeting Link & WhatsApp Sharing**:
   - Enter your name and friend/family member's name.
-  - Generates custom URL (`?from=Ramesh&to=Priya&lang=kannada`).
+  - Generates custom URL (`?from=Suraj&to=Priya&lang=kannada`).
   - One-click share to WhatsApp with pre-formatted Kannada and English greetings.
 - **🖼️ 1080x1080 High-Res Greeting Card Generator**:
   - Automatically draws a Mysore royal crimson & gold festival card with your name and wish for WhatsApp Status / Instagram!

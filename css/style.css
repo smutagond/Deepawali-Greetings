@@ -314,14 +314,33 @@ body {
   right: 18px;
   bottom: 18px;
   z-index: 1000;
-  min-height: 44px;
-  max-width: calc(100vw - 32px);
+  width: 52px;
+  height: 52px;
+  min-height: 52px;
+  padding: 0;
+  border-radius: 50%;
   justify-content: center;
   background: rgba(25, 10, 39, 0.92);
   border-color: rgba(255, 215, 0, 0.45);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(10px);
 }
+.background-music-toggle .music-wave {
+  gap: 2px;
+  height: 20px;
+}
+.background-music-toggle .music-wave span {
+  width: 3px;
+  animation-duration: 0.7s;
+}
+.background-music-toggle:not(.playing) .music-wave span {
+  animation-play-state: paused;
+  height: 5px;
+}
+.background-music-toggle .music-wave span:nth-child(2) { animation-delay: 0.12s; }
+.background-music-toggle .music-wave span:nth-child(3) { animation-delay: 0.24s; }
+.background-music-toggle .music-wave span:nth-child(4) { animation-delay: 0.36s; }
+.background-music-toggle .music-wave span:nth-child(5) { animation-delay: 0.48s; }
 .background-music-toggle:disabled {
   cursor: not-allowed;
   opacity: 0.7;
@@ -1123,8 +1142,10 @@ body {
   .background-music-toggle {
     right: 12px;
     bottom: 12px;
-    padding: 8px 12px;
-    font-size: 0.74rem;
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+    padding: 0;
   }
   .btn-row-dual {
     grid-template-columns: 1fr;

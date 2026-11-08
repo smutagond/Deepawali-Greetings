@@ -19,7 +19,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/style.css?v=20261108-9">
+  <link rel="stylesheet" href="css/style.css?v=20261108-10">
 </head>
 <body>
 
@@ -67,7 +67,7 @@
   <div id="copy-feedback-toast" class="copy-feedback-toast" role="status" aria-live="polite"></div>
   <audio id="background-music" src="assets/deepawali-background.mp3" preload="metadata" loop></audio>
   <button id="background-music-toggle" class="ctrl-btn background-music-toggle" type="button" aria-label="Play background music" aria-pressed="false">
-    🎵 ಹಿನ್ನೆಲೆ ಸಂಗೀತ (Play Music)
+    <span aria-hidden="true">🎵</span>
   </button>
 
   <!-- Main Content Wrapper -->
@@ -198,12 +198,12 @@
           <div class="names-card-box">
             <div class="form-group">
               <label for="input-sender" class="form-label">ನಿಮ್ಮ ಹೆಸರು / ಕುಟುಂಬದ ಹೆಸರು (Your Name/Family)</label>
-              <input type="text" id="input-sender" class="form-input" placeholder="ಉದಾಹರಣೆ: ರಮೇಶ್ ಮತ್ತು ಕುಟುಂಬದವರು / Ramesh & Family" maxlength="50">
+              <input type="text" id="input-sender" class="form-input" placeholder="ಉದಾಹರಣೆ: ಸೂರಜ್ ಮತ್ತು ಕುಟುಂಬದವರು / Suraj & Family" maxlength="50">
             </div>
 
             <div class="form-group">
-              <label for="input-recipient" class="form-label">ಸ್ವೀಕರಿಸುವವರ ಹೆಸರು (Recipient's Name - ಐಚ್ಛಿಕ)</label>
-              <input type="text" id="input-recipient" class="form-input" placeholder="ಉದಾಹರಣೆ: ಪ್ರಿಯಾ / Dear Friends" maxlength="50">
+              <label for="input-recipient" class="form-label">ಸ್ವೀಕರಿಸುವವರ ಹೆಸರು (Recipient's Name)</label>
+              <input type="text" id="input-recipient" class="form-input" placeholder="ಉದಾಹರಣೆ: ವಿಶ್ವಾ ಮತ್ತು ಕುಟುಂಬದವರು / Vishwa & Family" maxlength="50">
             </div>
 
             <div class="names-action-footer">

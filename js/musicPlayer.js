@@ -17,16 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
     button.classList.toggle('playing', playing);
     button.setAttribute('aria-pressed', String(playing));
     button.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-    button.innerHTML = playing
-      ? '<span class="music-wave"><span></span><span></span><span></span></span> ಸಂಗೀತ: ನುಡಿಸುತ್ತಿದೆ'
-      : '🎵 ಹಿನ್ನೆಲೆ ಸಂಗೀತ (Play Music)';
+    button.innerHTML = '<span class="music-wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>';
   };
 
   audio.addEventListener('play', updateButton);
   audio.addEventListener('pause', updateButton);
   audio.addEventListener('error', () => {
     button.disabled = true;
-    button.textContent = 'ಸಂಗೀತ ಲಭ್ಯವಿಲ್ಲ (Music unavailable)';
+    button.setAttribute('aria-label', 'Background music unavailable');
     console.error('Unable to load the Deepawali background music file.');
   });
 
