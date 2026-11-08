@@ -149,7 +149,6 @@ class DiyaAltar {
     diya.isLit = true;
     this.litCount++;
 
-    // Audio cue (temple chime)
     if (window.soundEngine) {
       window.soundEngine.playDiyaChime(index);
     }
@@ -212,7 +211,6 @@ class DiyaAltar {
   }
 
   triggerGrandCelebration() {
-    if (window.soundEngine) window.soundEngine.playShankh();
     if (window.fireworks) {
       window.fireworks.launchCelebrationFinale(7);
     }
