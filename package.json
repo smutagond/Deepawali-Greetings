@@ -1,0 +1,12 @@
+{
+  "name": "deepawali-wishes",
+  "version": "1.0.0",
+  "description": "An interactive, luminous Deepawali greeting and wishing website with fireworks, diya lighting, and personalized card generator.",
+  "scripts": {
+    "start": "npx serve -l 3000 ."
+  },
+  "keywords": ["diwali", "deepawali", "greeting", "wishes", "fireworks", "diyas"],
+  "author": "",
+  "license": "MIT"
+}
+
