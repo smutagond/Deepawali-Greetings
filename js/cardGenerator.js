@@ -263,6 +263,39 @@ class CardGenerator {
     return resultLines;
   }
 
+  createShareFile(sender, recipient, wishText, isKannada = true) {
+    const dataUrl = this.generate(sender, recipient, wishText, isKannada);
+    const [header, encodedData] = dataUrl.split(',');
+    if (!header || !encodedData) {
+      throw new Error('Generated greeting card has an invalid image data URL.');
+    }
+
+    const mimeType = header.match(/^data:(.*?);base64$/)?.[1];
+    if (!mimeType) {
+      throw new Error('Generated greeting card is not a base64-encoded image.');
+    }
+
+    const binary = atob(encodedData);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+
+    const namePart = recipient ? recipient.trim().replace(/\s+/g, '-') : 'Karnataka';
+    return new File([bytes], `Deepavali-Karnataka-Wishes-${namePart}.png`, { type: mimeType });
+  }
+
+  downloadShareFile(file) {
+    const objectUrl = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.download = file.name;
+    link.href = objectUrl;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+  }
+
   async downloadCard(sender, recipient, wishText, isKannada = true) {
     if (document.fonts && document.fonts.ready) {
       try {
