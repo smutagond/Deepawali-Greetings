@@ -260,12 +260,12 @@ function setupWishGenerator(initialLang = 'kannada') {
   // Share on WhatsApp
   const btnWhatsApp = document.getElementById('btn-share-whatsapp');
   if (btnWhatsApp) {
-    btnWhatsApp.addEventListener('click', async () => {
+    btnWhatsApp.addEventListener('click', () => {
       const sender = inputSender ? inputSender.value.trim() : '';
       const recipient = inputRecipient ? inputRecipient.value.trim() : '';
       const wish = inputWishText ? inputWishText.value.trim() : '';
 
-      const shareUrl = buildShareableUrl(sender, recipient, wish, currentLang);
+      const shareUrl = buildShareableUrl(sender, recipient, currentLang);
       const textMessage = window.createShareMessage(sender, recipient, wish, shareUrl, currentLang);
       const isKn = currentLang === 'kannada';
 
@@ -283,24 +283,6 @@ function setupWishGenerator(initialLang = 'kannada') {
         showCopyToast(isKn
           ? 'ಕಾರ್ಡ್ ಸಿದ್ಧಪಡಿಸಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.'
           : 'The greeting card could not be prepared. Please try again.');
-        return;
-      }
-
-      if (navigator.canShare && navigator.canShare({ files: [cardFile] }) && navigator.share) {
-        try {
-          await navigator.share({
-            files: [cardFile],
-            text: textMessage,
-            title: isKn ? 'ದೀಪಾವಳಿ ಶುಭಾಶಯಗಳು' : 'Deepavali Greetings'
-          });
-        } catch (error) {
-          if (error.name !== 'AbortError') {
-            console.error('Unable to share the greeting card.', error);
-            showCopyToast(isKn
-              ? 'ಕಾರ್ಡ್ ಹಂಚಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು PNG ಕಾರ್ಡ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ ಹಂಚಿಕೊಳ್ಳಿ.'
-              : 'Unable to share the card. Please download the PNG and share it.');
-          }
-        }
         return;
       }
 
@@ -327,7 +309,7 @@ function setupWishGenerator(initialLang = 'kannada') {
       const recipient = inputRecipient ? inputRecipient.value.trim() : '';
       const wish = inputWishText ? inputWishText.value.trim() : '';
 
-      const shareUrl = buildShareableUrl(sender, recipient, wish, currentLang);
+      const shareUrl = buildShareableUrl(sender, recipient, currentLang);
       navigator.clipboard.writeText(shareUrl).then(() => {
         showCopyToast(currentLang === 'kannada' ? '✨ ದೀಪಾವಳಿ ಶುಭಾಶಯ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!' : '✨ Shareable greeting link copied to clipboard!');
         if (window.soundEngine) window.soundEngine.playDiyaChime(2);
@@ -366,11 +348,10 @@ function setupWishGenerator(initialLang = 'kannada') {
   }
 }
 
-function buildShareableUrl(sender, recipient, wish, lang) {
+function buildShareableUrl(sender, recipient, lang) {
   const url = new URL(window.location.origin + window.location.pathname);
   if (sender) url.searchParams.set('from', sender);
   if (recipient) url.searchParams.set('to', recipient);
-  if (wish) url.searchParams.set('msg', wish);
   if (lang) url.searchParams.set('lang', lang);
   return url.toString();
 }
