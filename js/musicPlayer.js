@@ -30,6 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Unable to load the Deepawali background music file.');
   });
 
+  const pauseWhenLeavingPage = () => {
+    if (!audio.paused) audio.pause();
+  };
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseWhenLeavingPage();
+    } else {
+      startMusic();
+    }
+  });
+  window.addEventListener('pagehide', pauseWhenLeavingPage);
+
   let interactionListenerAdded = false;
   const startOnInteraction = event => {
     if (button.contains(event.target)) return;
@@ -55,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Unable to play the Deepawali background music.', error);
     }
   };
+  window.addEventListener('pageshow', startMusic);
 
   button.addEventListener('click', async () => {
     if (!audio.paused) {

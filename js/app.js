@@ -269,6 +269,10 @@ function setupWishGenerator(initialLang = 'kannada') {
       const textMessage = window.createShareMessage(sender, recipient, wish, shareUrl, currentLang);
 
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(textMessage)}`;
+      const backgroundMusic = document.getElementById('background-music');
+      if (backgroundMusic instanceof HTMLAudioElement) {
+        backgroundMusic.pause();
+      }
       window.open(waUrl, '_blank');
     });
   }
