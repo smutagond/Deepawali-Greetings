@@ -260,7 +260,7 @@ function setupWishGenerator(initialLang = 'kannada') {
   // Share on WhatsApp
   const btnWhatsApp = document.getElementById('btn-share-whatsapp');
   if (btnWhatsApp) {
-    btnWhatsApp.addEventListener('click', () => {
+    btnWhatsApp.addEventListener('click', async () => {
       const sender = inputSender ? inputSender.value.trim() : '';
       const recipient = inputRecipient ? inputRecipient.value.trim() : '';
       const wish = inputWishText ? inputWishText.value.trim() : '';
@@ -283,6 +283,24 @@ function setupWishGenerator(initialLang = 'kannada') {
         showCopyToast(isKn
           ? 'ಕಾರ್ಡ್ ಸಿದ್ಧಪಡಿಸಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.'
           : 'The greeting card could not be prepared. Please try again.');
+        return;
+      }
+
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [cardFile] })) {
+        try {
+          await navigator.share({
+            files: [cardFile],
+            text: textMessage,
+            title: isKn ? 'ದೀಪಾವಳಿ ಶುಭಾಶಯಗಳು' : 'Deepavali Greetings'
+          });
+        } catch (error) {
+          if (error.name !== 'AbortError') {
+            console.error('Unable to share the greeting card.', error);
+            showCopyToast(isKn
+              ? 'ಕಾರ್ಡ್ ಹಂಚಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಕಾರ್ಡ್ ಅನ್ನು WhatsApp ನಲ್ಲಿ ಲಗತ್ತಿಸಿ.'
+              : 'Unable to share the card. Attach the downloaded card in WhatsApp instead.');
+          }
+        }
         return;
       }
 

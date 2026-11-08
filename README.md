@@ -61,7 +61,7 @@ Built with pure HTML5, CSS3, JavaScript, Canvas, and Web Audio API — zero depe
 - **💌 Personalized Greeting Link & WhatsApp Sharing**:
   - Enter your name and friend/family member's name.
   - Generates custom URL (`?from=Suraj&to=Priya&lang=kannada`).
-  - Opens WhatsApp with a formatted Kannada or English greeting and a short personalized link. The generated PNG downloads at the same time so it can be attached to the WhatsApp message.
+  - Shares the generated PNG greeting card together with a formatted Kannada or English greeting and personalized link through the device share sheet when supported. Other browsers download the PNG and open WhatsApp with the formatted text and link so the card can be attached.
 - **🖼️ 1080x1080 High-Res Greeting Card Generator**:
   - Automatically draws a Mysore royal crimson & gold festival card with your name and wish for WhatsApp Status / Instagram!
 - **🎵 ದೀಪಾವಳಿ ಹಿನ್ನೆಲೆ ಸಂಗೀತ (Deepawali Background Music)**:
